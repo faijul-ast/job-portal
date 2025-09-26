@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-2">
-                                <span class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-full text-sm font-medium">
+                                <span class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 py-1 rounded-full text-sm font-medium text-center">
                                     {{ ucwords(str_replace(['_', '-'], ' ', $job->employment_type)) }}
                                 </span>
                                 @if($job->is_remote)
