@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Google;
 
 use App\Http\Controllers\Controller;
-use App\Models\Job;
 use App\Models\JobPosting;
 use Illuminate\Http\Response;
 

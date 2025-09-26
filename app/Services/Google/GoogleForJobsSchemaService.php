@@ -46,18 +46,12 @@ class GoogleForJobsSchemaService
                 ],
             ] : null,
             'directApply' => true,
-            'employmentUnit' => $job->publicUrl(), // not required; helpful for clarity
         ];
     }
 
     private function mapEmploymentType(?string $type): string
     {
-        return match (strtolower((string)$type)) {
-            'part_time' => 'PART_TIME',
-            'contract'  => 'CONTRACTOR',
-            'intern'    => 'INTERN',
-            'temporary' => 'TEMPORARY',
-            default     => 'FULL_TIME',
-        };
+        $map = config('integrations.mappings.employment_type_gfj');
+        return $map[strtolower((string)$type)] ?? 'FULL_TIME';
     }
 }
