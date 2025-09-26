@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'theirstack' => [
+        'base_url' => env('THEIRSTACK_BASE_URL', 'https://api.theirstack.com'),
+        'key'      => env('THEIRSTACK_API_KEY'),
+    ],
+
 ];
