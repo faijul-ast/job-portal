@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Google;
 use App\Http\Controllers\Controller;
 use App\Models\JobPosting;
 use App\Services\Google\GoogleForJobsSchemaService;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 
@@ -19,11 +21,17 @@ class JobsSchemaController extends Controller
 
     public function show(string $slug, GoogleForJobsSchemaService $schema)
     {
-        $job = JobPosting::where('slug', $slug)->published()->firstOrFail();
-        $gfj = $schema->make($job);
+        try {
+            $job = JobPosting::where('slug', $slug)->published()->firstOrFail();
+            $gfj = $schema->make($job);
 
-        // If using Blade:
-        return view('job_postings.show', ['job' => $job, 'gfjSchema' => $gfj]);
+            // If using Blade:
+            return view('job_postings.show', ['job' => $job, 'gfjSchema' => $gfj]);
+        } catch (Exception $e) {
+            Log::error('JobListing Show: ' . $e->getMessage());
+
+            return redirect()->route('job_postings.index')->with('error', 'Failed to find the job');
+        }
     }
 
     public function create()

@@ -15,7 +15,7 @@
             @foreach($jobPostings as $job)
                 <div class="border p-4 rounded shadow hover:shadow-lg transition">
                     <h2 class="text-xl font-semibold">
-                        <a href="{{ route('job_postings.show', $job) }}" class="text-blue-600 hover:underline">
+                        <a href="{{ route('job_postings.show', $job->slug) }}" class="text-blue-600 hover:underline">
                             {{ $job->title }}
                         </a>
                     </h2>
@@ -45,7 +45,7 @@
                     </p>
 
                     <div class="mt-3">
-                        <a href="{{ route('job_postings.show', $job) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <a href="{{ route('job_postings.show', $job->slug) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
                             View Details
                         </a>
                     </div>
