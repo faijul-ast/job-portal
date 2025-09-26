@@ -30,7 +30,7 @@ class JobsSchemaController extends Controller
         } catch (Exception $e) {
             Log::error('JobListing Show: ' . $e->getMessage());
 
-            return redirect()->route('job_postings.index')->with('error', 'Failed to find the job');
+            return redirect()->back()->with('error', 'Job is expired or not published yet.');
         }
     }
 
@@ -70,6 +70,6 @@ class JobsSchemaController extends Controller
 
         JobPosting::create($validated);
 
-        return redirect()->route('job_postings.index')->with('success', 'Job posting created successfully!');
+        return redirect()->route('job_postings.index')->with('success', 'Job created successfully!');
     }
 }

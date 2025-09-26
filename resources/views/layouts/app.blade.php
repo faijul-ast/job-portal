@@ -7,46 +7,33 @@
 
     <!-- TailwindCSS CDN for simplicity -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- jQuery CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
+
 <body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col">
 
-    <!-- Header / Navbar -->
-    <header class="bg-white shadow">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Left: Site Title -->
-            <a href="{{ url('/') }}" class="text-2xl font-bold text-blue-600">JobPortal</a>
-
-            <!-- Right: Navigation + Create Job button -->
-            <div class="flex items-center space-x-4">
-                {{-- @auth --}}
-                    <!-- Create Job Button -->
-                    <a href="{{ route('job_postings.create') }}"
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-                        Create Job
-                    </a>
-                {{-- @endauth --}}
-
-                {{-- <nav class="space-x-4">
-                    <a href="{{ route('job_postings.index') }}" class="hover:text-blue-600">Jobs</a>
-
-                    @guest
-                        <a href="{{ route('login') }}" class="hover:text-blue-600">Login</a>
-                        <a href="{{ route('register') }}" class="hover:text-blue-600">Register</a>
-                    @else
-                        <span>Hi, {{ Auth::user()->name }}</span>
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
-                            @csrf
-                            <button type="submit" class="hover:text-blue-600">Logout</button>
-                        </form>
-                    @endguest
-                </nav> --}}
+    <header class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-slate-800">JobBoard</h1>
+                <nav class="flex items-center gap-6">
+                    <a href="{{ route('job_postings.index') }}" class="text-slate-600 hover:text-blue-600">Jobs</a>
+                    <a href="{{ route('job_postings.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Post a New Job</a>
+                </nav>
             </div>
         </div>
     </header>
 
-
     <!-- Main Content -->
-    <main class="flex-1 container mx-auto px-6 py-6">
+    <main class="container mx-auto px-4 py-8">
         @yield('content')
     </main>
 
@@ -55,6 +42,27 @@
         <div class="container mx-auto px-6 py-4 text-center text-gray-600">
             &copy; {{ date('Y') }} JobPortal. All rights reserved.
         </div>
+
+        <script>
+            @if(Session::has('success'))
+                toastr.success("{{ Session::get('success') }}");
+            @endif
+
+            @if(Session::has('error'))
+                toastr.error("{{ Session::get('error') }}");
+            @endif
+
+            @if(Session::has('info'))
+                toastr.info("{{ Session::get('info') }}");
+            @endif
+
+            @if(Session::has('warning'))
+                toastr.warning("{{ Session::get('warning') }}");
+            @endif
+        </script>
+
+        <!-- Stack for page-specific scripts -->
+        @stack('script')
     </footer>
 
 </body>
