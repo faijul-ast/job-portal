@@ -23,7 +23,9 @@
     <header class="bg-white shadow-sm border-b">
         <div class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-bold text-slate-800">JobBoard</h1>
+                <h1 class="text-2xl font-bold text-slate-800">
+                    <a href="{{ route('job_postings.index') }}" class="hover:text-blue-600">JobBoard</a>
+                </h1>
                 <nav class="flex items-center gap-6">
                     <a href="{{ route('job_postings.index') }}" class="text-slate-600 hover:text-blue-600">Jobs</a>
                     <a href="{{ route('job_postings.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Post a New Job</a>
