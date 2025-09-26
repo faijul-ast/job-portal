@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Create Job')
+
 @section('content')
     <!-- Page Title -->
     <div class="mb-8 text-center">

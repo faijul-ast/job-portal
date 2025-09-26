@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Job Details')
+
 @section('content')
     <!-- Breadcrumb -->
     <div class="container mx-auto px-4 py-4">
