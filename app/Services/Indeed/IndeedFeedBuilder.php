@@ -29,7 +29,7 @@ class IndeedFeedBuilder
             $this->addChildCdata($j, 'date', $job->updated_at->toRfc2822String());
 
             // URL to your public job detail page
-            $url = route('jobs.show', ['slug' => $job->slug]); // define route in your app
+            $url = route('job_postings.show', ['slug' => $job->slug]); // define route in your app
             $this->addChildCdata($j, 'referencenumber', (string) $job->external_ref ?? (string) $job->id);
             $this->addChildCdata($j, 'url', $url);
 
